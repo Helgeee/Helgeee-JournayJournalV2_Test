@@ -21,14 +21,15 @@ export class NotesService {
   async create(createNoteDto: CreateNoteDto , id: number) { 
 
     const newNote = {
-      user: { id },
+      user: { 
+        id: id 
+      },
       img: createNoteDto.img,
       title: createNoteDto.title ,
       coordinate:  createNoteDto.coordinate,
       text: createNoteDto.text,
       collection: { id: createNoteDto.collection } , 
     }
-    console.log(newNote)
 
     if(!newNote) throw new BadRequestException(' Что-то пошло не так... ')  
 

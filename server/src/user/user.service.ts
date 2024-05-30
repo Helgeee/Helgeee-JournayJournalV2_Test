@@ -18,7 +18,6 @@ export class UserService {
     const existUser = await this.userRepository.findOne({
       where:{
         email: createUserDto.email,
-        username: createUserDto.username,
       }
     })
     if(existUser) throw new BadRequestException('This email already exist!')
@@ -33,14 +32,15 @@ export class UserService {
 
       const token = this.jwtService.sign({ email: createUserDto.email})
 
+      
+
     return {user , token} 
   }
   
-      async findOne(email: string , username: string) {
+      async findOne(email: string) {
         return await this.userRepository.findOne({
           where: {
           email,
-          username,
         },
       })
       }

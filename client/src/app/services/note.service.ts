@@ -25,37 +25,37 @@ export class NotesService {
         return this.http.get<INotes[]>('notes').subscribe((res) => this.notesSig.set(res))
     }
 
-    // create(data: INotesData) {
-    //     return this.http.post<INotes>('notes', data)
-    //     .pipe(tap((newNotes) => {
-    //         const collection = this.collectionService
-    //             .collectionsSig()
-    //             .find((ctg) => ctg.id ===  newNotes.collection?.id)
-
-    //             this.notesSig.update((notes) => [
-    //                 {...newNotes, collection: collection },
-    //                 ...notes,
-                    
-    //             ])
-    //             console.log(newNotes);
-    //     }))
-        
-    //     .subscribe((newNotes : INotes ) => this.toastr.success('Заметка создана'))
-    // }
-
     create(data: INotesData) {
         return this.http.post<INotes>('notes', data)
-          .pipe(
-            tap((newNotes) => {
-              const collection = this.collectionService.collectionsSig().find((ctg) => ctg.id === newNotes.collection?.id);
-              this.notesSig.update((notes) => [{...newNotes, collection: collection}, ...notes]);
-              console.log(newNotes);
-            })
-          )
-          .subscribe((newNotes: INotes) => {
-            this.toastr.success('Заметка создана');
-          });
+        .pipe(tap((newNotes) => {
+            const collection = this.collectionService
+                .collectionsSig()
+                .find((ctg) => ctg.id ===  newNotes.collection?.id)
+
+                this.notesSig.update((notes) => [
+                    {...newNotes, collection: collection },
+                    ...notes,
+                    
+                ])
+                console.log(newNotes);
+        }))
+        
+        .subscribe((newNotes : INotes ) => this.toastr.success('Заметка создана'))
     }
+
+    // create(data: INotesData) {
+    //     return this.http.post<INotes>('notes', data)
+    //       .pipe(
+    //         tap((newNotes) => {
+    //           const collection = this.collectionService.collectionsSig().find((ctg) => ctg.id === newNotes.collection?.id);
+    //           this.notesSig.update((notes) => [{...newNotes, collection: collection}, ...notes]);
+    //           console.log(newNotes);
+    //         })
+    //       )
+    //       .subscribe((newNotes: INotes) => {
+    //         this.toastr.success('Заметка создана');
+    //       });
+    // }
 
     
 

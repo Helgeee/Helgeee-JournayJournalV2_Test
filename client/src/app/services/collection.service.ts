@@ -33,8 +33,6 @@ export class CollectionService {
             })
     }
 
-
-    
     update(id: number, title: string) {
         this.http.patch(`collection/collection/${id}`, { title }).subscribe(() => {
             this.collectionsSig.update((collections) =>
@@ -44,8 +42,6 @@ export class CollectionService {
             this.toastr.success('updated')
         })
     }
-
-
 
     delete(id: number) {
         return this.http.delete(`collections/collection/${id}`).subscribe(() => {

@@ -13,6 +13,7 @@ export interface INotes {
     updatedAt: Date
 
     collection?:  ICollection | null
+
 }
 
 export interface INotesData{
@@ -21,5 +22,4 @@ export interface INotesData{
     coordinate: number 
     text: string
     collection: number
-
 }

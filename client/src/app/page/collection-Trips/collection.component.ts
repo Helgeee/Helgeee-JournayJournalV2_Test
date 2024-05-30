@@ -29,7 +29,7 @@ export class CollectionComponent  implements OnInit {
 
   onSubmit(){
    
-    if(this.collectionForm.valid   && this.method === 'create' ) {
+    if(this.collectionForm.valid  && this.method === 'create' ) {
         console.log(this.collectionForm.value)
         this.collectionService.create(this.collectionForm.value.title)
         this.collectionForm.reset()
